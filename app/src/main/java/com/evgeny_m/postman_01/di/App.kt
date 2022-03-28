@@ -1,6 +1,7 @@
 package com.evgeny_m.postman_01.di
 
 import android.app.Application
+import com.evgeny_m.feature_contacts_presenter.api.FeatureContactsUIKoinModule
 import org.koin.core.context.startKoin
 
 class App : Application() {
@@ -9,7 +10,8 @@ class App : Application() {
         startKoin {
             modules(
                 listOf(
-                    AppKoinModule.create()
+                    AppKoinModule.create(),
+                    FeatureContactsUIKoinModule.create(),
                 )
             )
         }
