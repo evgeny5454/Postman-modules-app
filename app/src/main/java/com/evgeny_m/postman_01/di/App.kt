@@ -4,6 +4,7 @@ import android.app.Application
 import com.evgeny_m.feature_contacts_presenter.api.FeatureContactsUIKoinModule
 import org.koin.core.context.startKoin
 
+@Suppress("unused")
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
