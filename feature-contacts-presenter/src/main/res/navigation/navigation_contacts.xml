@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.evgeny_m.feature_contacts_presenter.ContactsFragment"
+        android:name="com.evgeny_m.feature_contacts_presenter.fragment.ContactsFragment"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts" />
 </navigation>

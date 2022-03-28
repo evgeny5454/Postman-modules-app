@@ -1,11 +1,9 @@
 package com.evgeny_m.postman_01
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,7 +13,6 @@ import com.evgeny_m.navigator_api.AppNavigator
 import com.evgeny_m.postman_01.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 
-//lateinit var drawerLayout: DrawerLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,12 +24,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Postman_01)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         drawerLayout = binding.drawerLayout
-        //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         navigationConfig = AppBarConfiguration(setOf(R.menu.navigation_menu), drawerLayout)
 
         val navView = binding.navView
@@ -53,24 +50,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigator() {
-        appNavigator.navigationDestination.observe(this, Observer {
-
+        appNavigator.navigationDestination.observe(this, {
             it?.data?.let { module ->
                 navController.navigate(module.getNavigationStartPointResId())
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         })
-        appNavigator.navigationResDestination.observe(this, Observer {
+        appNavigator.navigationResDestination.observe(this, {
             it?.data?.let { res ->
                 navController.navigate(res)
             }
         })
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
     override fun onBackPressed() {
@@ -84,6 +74,4 @@ class MainActivity : AppCompatActivity() {
     companion object {
         lateinit var drawerLayout: DrawerLayout
     }
-
-
 }
