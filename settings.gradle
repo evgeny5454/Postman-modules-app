@@ -2,3 +2,5 @@ rootProject.name = "Postman_0.1"
 include ':app'
 include ':navigator-api'
 include ':navigator-impl'
+include ':feature-contacts-presenter'
+include ':feature-contacts-api'

@@ -1,7 +1,6 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
-    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -9,13 +8,13 @@ android {
     buildToolsVersion "31.0.0"
 
     defaultConfig {
-        applicationId "com.evgeny_m.postman_01"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -42,26 +41,20 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    //Modules
-    implementation project(path: ':navigator-api')
-    implementation project(path: ':navigator-impl')
+
     implementation project(path: ':feature-contacts-api')
-    implementation project(path: ':feature-contacts-presenter')
-    //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
-    //LiveData, ViewModel
+    implementation project(path: ':navigator-api')
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-RC'
-    //Koin
-    implementation 'ru.ar2code.mutableliveevent:live-event:1.0.2'
+
     implementation 'org.koin:koin-androidx-scope:2.1.6'
     implementation 'org.koin:koin-androidx-viewmodel:2.1.6'
     implementation 'org.koin:koin-androidx-fragment:2.1.6'

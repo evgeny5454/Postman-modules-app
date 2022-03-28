@@ -4,5 +4,5 @@ interface ModuleNavInfo {
 
     fun getNavigationStartPointResId() : Int
 
-    fun isFeatureAvailable() : Int
+    fun isFeatureAvailable() : Boolean
 }

@@ -1,6 +1,7 @@
 package com.evgeny_m.postman_01
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -9,15 +10,18 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.evgeny_m.feature_contacts_api.FeatureContactsDestination
 import com.evgeny_m.navigator_api.AppNavigator
 import com.evgeny_m.postman_01.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
+
+//lateinit var drawerLayout: DrawerLayout
 
 class MainActivity : AppCompatActivity() {
 
     private val appNavigator: AppNavigator by inject()
 
-    private lateinit var drawerLayout: DrawerLayout
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var navigationConfig: AppBarConfiguration
     private lateinit var navController: NavController
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         drawerLayout = binding.drawerLayout
+        //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         navigationConfig = AppBarConfiguration(setOf(R.menu.navigation_menu), drawerLayout)
 
         val navView = binding.navView
@@ -35,10 +40,10 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navView.setNavigationItemSelectedListener {
+            drawerLayout.close()
             when (it.itemId) {
-                it.itemId -> {
-                    //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                    drawerLayout.close()
+                R.id.contactsFragment -> {
+                    appNavigator.navigateTo(FeatureContactsDestination::class.java)
                     true
                 }
                 else -> false
@@ -49,8 +54,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavigator() {
         appNavigator.navigationDestination.observe(this, Observer {
+
             it?.data?.let { module ->
                 navController.navigate(module.getNavigationStartPointResId())
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         })
         appNavigator.navigationResDestination.observe(this, Observer {
@@ -72,6 +79,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    companion object {
+        lateinit var drawerLayout: DrawerLayout
     }
 
 
