@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.evgeny_m.app_data_module.FirebaseAuthImpl
 import com.evgeny_m.feature_single_chat_api.FeatureSingleChatDestination
 import com.evgeny_m.navigator_api.AppNavigator
 import com.evgeny_m.postman_01.MainActivity.Companion.drawerLayout
@@ -24,6 +25,9 @@ class ChatsFragment : Fragment() {
     ): View {
         binding = FragmentChatsBinding.inflate(layoutInflater)
 
+        val auth = FirebaseAuthImpl().auth()
+
+
         binding.btn.setOnClickListener {
             appNavigator.navigateTo(FeatureSingleChatDestination::class.java,"Имя пользователя")
         }
@@ -34,8 +38,10 @@ class ChatsFragment : Fragment() {
         super.onResume()
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
-    companion object {
-        lateinit var idToNavigate : String
-    }
+
+    /*override fun onStart() {
+        super.onStart()
+        FirebaseAuthImpl().auth()
+    }*/
 
 }

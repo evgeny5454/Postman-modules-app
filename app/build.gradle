@@ -56,6 +56,7 @@ dependencies {
     implementation project(path: ':feature-settings-presenter')
     implementation project(path: ':feature-single-chat-api')
     implementation project(path: ':feature-single-chat-presenter')
+    implementation project(path: ':app-data-module')
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
