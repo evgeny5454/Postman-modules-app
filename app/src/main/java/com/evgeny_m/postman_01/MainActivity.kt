@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.evgeny_m.feature_contacts_api.FeatureContactsDestination
+import com.evgeny_m.feature_settings_api.FeatureSettingsDestination
 import com.evgeny_m.navigator_api.AppNavigator
 import com.evgeny_m.postman_01.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.contactsFragment -> {
                     appNavigator.navigateTo(FeatureContactsDestination::class.java)
+                    true
+                }
+                R.id.settingsFragment ->{
+                    appNavigator.navigateTo(FeatureSettingsDestination::class.java)
                     true
                 }
                 else -> false
