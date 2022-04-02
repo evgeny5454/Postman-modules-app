@@ -8,6 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.evgeny_m.app_data_module.FirebaseAuthImpl
+import com.evgeny_m.feature_auth_api.FeatureAuthDestination
 import com.evgeny_m.feature_contacts_api.FeatureContactsDestination
 import com.evgeny_m.feature_settings_api.FeatureSettingsDestination
 import com.evgeny_m.navigator_api.AppNavigator
@@ -18,8 +20,6 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
 
     private val appNavigator: AppNavigator by inject()
-
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var navigationConfig: AppBarConfiguration
     private lateinit var navController: NavController
@@ -29,12 +29,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         drawerLayout = binding.drawerLayout
         navigationConfig = AppBarConfiguration(setOf(R.menu.navigation_menu), drawerLayout)
-
         val navView = binding.navView
         navController = findNavController(R.id.nav_content_host)
+
         navView.setupWithNavController(navController)
 
         navView.setNavigationItemSelectedListener {

@@ -10,8 +10,9 @@
         android:name="com.evgeny_m.postman_01.ChatsFragment"
         android:label="fragment_chats"
         tools:layout="@layout/fragment_chats" />
-    <include app:graph="@navigation/navigation_contacts"/>
+    <include app:graph="@navigation/navigation_contacts" />
     <include app:graph="@navigation/navigation_settings" />
     <include app:graph="@navigation/navigation_single_chat" />
+    <include app:graph="@navigation/navigation_auth" />
 
 </navigation>
