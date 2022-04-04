@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="Postman_0.1.app" target="11" />
+      <module name="Postman_0.1.app-data-module" target="11" />
+      <module name="Postman_0.1.feature-auth-api" target="11" />
+      <module name="Postman_0.1.feature-auth-data" target="11" />
+      <module name="Postman_0.1.feature-auth-presenter" target="11" />
+      <module name="Postman_0.1.feature-contacts-api" target="11" />
+      <module name="Postman_0.1.feature-contacts-presenter" target="11" />
+      <module name="Postman_0.1.feature-settings-api" target="11" />
+      <module name="Postman_0.1.feature-settings-presenter" target="11" />
+      <module name="Postman_0.1.feature-single-chat-api" target="11" />
+      <module name="Postman_0.1.feature-single-chat-presenter" target="11" />
+      <module name="Postman_0.1.navigator-api" target="11" />
+      <module name="Postman_0.1.navigator-impl" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
