@@ -5,12 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".StartAuthFragment">
 
-    <EditText
-        android:id="@+id/phone"
-        android:layout_gravity="center"
+    <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:hint="Phone" />
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="Phone" />
+        <EditText
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Code"/>
+    </LinearLayout>
+
+
 
 </FrameLayout>

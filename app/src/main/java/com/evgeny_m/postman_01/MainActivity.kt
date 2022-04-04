@@ -1,6 +1,7 @@
 package com.evgeny_m.postman_01
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationConfig: AppBarConfiguration
     private lateinit var navController: NavController
 
+    private val auth = FirebaseAuthImpl(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Postman_01)
         super.onCreate(savedInstanceState)
@@ -33,8 +36,14 @@ class MainActivity : AppCompatActivity() {
         navigationConfig = AppBarConfiguration(setOf(R.menu.navigation_menu), drawerLayout)
         val navView = binding.navView
         navController = findNavController(R.id.nav_content_host)
-
         navView.setupWithNavController(navController)
+
+        if (!auth.auth()) {
+            navController.navigate(R.id.authFragment)
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        } else {
+            Log.d("AUUTTHHH", auth.auth().toString())
+        }
 
         navView.setNavigationItemSelectedListener {
             drawerLayout.close()
@@ -70,6 +79,8 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.close()
+        } else if (!auth.auth()) {
+           finish()
         } else {
             super.onBackPressed()
         }
